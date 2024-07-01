@@ -10,9 +10,14 @@ package Vista;
  */
 public class Vista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Vista
-     */
+    String nombre[] = new String[10];
+    String apellido[] = new String[10];
+    String dni[] = new String[10];
+    String edad[] = new String[10];
+    String fechanac[] = new String[10];
+    String sexo[] = new String[10];
+    
+    
     public Vista() {
         initComponents();
         setVisible(true);
@@ -33,21 +38,21 @@ public class Vista extends javax.swing.JFrame {
         javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
-        javax.swing.JTextField txtApellido = new javax.swing.JTextField();
-        javax.swing.JTextField txtDni = new javax.swing.JTextField();
-        javax.swing.JTextField txtNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        txtDni = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
-        javax.swing.JTextField txtFecha = new javax.swing.JTextField();
-        javax.swing.JTextField txtSexo = new javax.swing.JTextField();
-        javax.swing.JTextField txtEdad = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        txtSexo = new javax.swing.JTextField();
+        txtEdad = new javax.swing.JTextField();
         javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel8 = new javax.swing.JLabel();
         javax.swing.JLabel jLabel9 = new javax.swing.JLabel();
         javax.swing.JButton btnGuardar = new javax.swing.JButton();
         javax.swing.JButton btnAdelante = new javax.swing.JButton();
         javax.swing.JButton btnAtras = new javax.swing.JButton();
-        javax.swing.JTextField txtIndice = new javax.swing.JTextField();
+        txtIndice = new javax.swing.JTextField();
         javax.swing.JLabel jLabel10 = new javax.swing.JLabel();
 
         jLabel4.setText("Dni:");
@@ -130,6 +135,11 @@ public class Vista extends javax.swing.JFrame {
         });
 
         btnAtras.setText("<<");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
 
         txtIndice.setEditable(false);
         txtIndice.setText("0");
@@ -255,6 +265,7 @@ public class Vista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+       
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoActionPerformed
 
@@ -279,24 +290,76 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSexoActionPerformed
 
     private void txtEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEdadActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtEdadActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        String indice = txtIndice.getText();
+        int indi = Integer.parseInt(indice);
+        
+        //cuando apretamos "GUARDAR" , esos mismos valores son guardados en los vectores en su respectivo indice
+        nombre[indi] = txtNombre.getText();
+        apellido[indi] = txtApellido.getText();
+        dni[indi] = txtDni.getText();
+        edad[indi] = txtEdad.getText();
+        fechanac[indi] = txtFecha.getText();
+        sexo[indi] = txtSexo.getText();
+              
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnAdelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdelanteActionPerformed
         String indice = txtIndice.getText();
+        int indi = Integer.parseInt(indice);
+        if (indi < 9) {
+            indi++; // Incrementamos el valor de 'indi'
+            indice = String.valueOf(indi); // Convertimos el nuevo valor de 'indi' a String
+            txtIndice.setText(indice);
+            
+            //cuando vaya adelante seteamos los valores con los valores que hay en los vectores definidos 
+            txtDni.setText(dni[indi]);
+            txtNombre.setText(nombre[indi]);
+            txtApellido.setText(apellido[indi]);
+            txtSexo.setText(sexo[indi]);
+            txtEdad.setText(edad[indi]);
+            txtFecha.setText(fechanac[indi]);
+            
+        }
+
+
     }//GEN-LAST:event_btnAdelanteActionPerformed
 
     private void txtIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIndiceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIndiceActionPerformed
 
-    
-    
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        String indice = txtIndice.getText();
+        int indi = Integer.parseInt(indice);
+        if (indi > 0) {
+            indi--; // Decrementamos el valor de 'indi'
+            indice = String.valueOf(indi); // Convertimos el nuevo valor de 'indi' a String
+            txtIndice.setText(indice);
+            
+            //cuando vaya atras seteamos los valores con los valores que hay en los vectores definidos 
+            txtDni.setText(dni[indi]);
+            txtNombre.setText(nombre[indi]);
+            txtApellido.setText(apellido[indi]);
+            txtSexo.setText(sexo[indi]);
+            txtEdad.setText(edad[indi]);
+            txtFecha.setText(fechanac[indi]);
+              
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JTextField txtApellido;
+    javax.swing.JTextField txtDni;
+    javax.swing.JTextField txtEdad;
+    javax.swing.JTextField txtFecha;
+    javax.swing.JTextField txtIndice;
+    javax.swing.JTextField txtNombre;
+    javax.swing.JTextField txtSexo;
     // End of variables declaration//GEN-END:variables
 }
